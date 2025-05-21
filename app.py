@@ -4,6 +4,10 @@ from datetime import datetime
 from doc_pro_ai_service import send_document_to_ai_service
 import json
 import traceback
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -11,6 +15,11 @@ app = Flask(__name__)
 DOWNLOADS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'downloads')
 DOCUMENTS_DIR = r"D:\ThoughtfocusRD\Peoples_group\documents"
 os.makedirs(DOWNLOADS_DIR, exist_ok=True)
+
+# Get API key from environment variable
+API_KEY = os.getenv('API_KEY')
+if not API_KEY:
+    raise ValueError("API_KEY not found in environment variables")
 
 @app.route('/', methods=['GET'])
 def index():
@@ -92,8 +101,7 @@ def process_document():
     file.save(temp_file_path)
     
     try:
-        # Process the document
-        API_KEY = "7a055afd4e7a130133dd9a6ef2366c83"
+        # Process the document using API_KEY from environment
         result = send_document_to_ai_service(temp_file_path, API_KEY, instruction_id)
         
         if result:
@@ -183,7 +191,6 @@ def cyclical_run():
         }), 400
     
     processed_files = 0
-    API_KEY = "7a055afd4e7a130133dd9a6ef2366c83"
     
     try:
         # Get all PDF files in the folder
@@ -192,7 +199,7 @@ def cyclical_run():
         for filename in pdf_files:
             file_path = os.path.join(folder_path, filename)
             
-            # Process the document
+            # Process the document using API_KEY from environment
             result = send_document_to_ai_service(file_path, API_KEY, instruction_id)
             
             if result:
