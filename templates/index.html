@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Processing Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .container-fluid {
+            padding: 0;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            background-color: #f8f9fa;
+            width: 250px;
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .sidebar .nav-link {
+            font-weight: 500;
+            color: #333;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+        }
+        .sidebar .nav-link i {
+            margin-right: 0.5rem;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .loading {
+            display: none;
+        }
+        .file-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .file-content {
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .file-item {
+            cursor: pointer;
+        }
+        .file-item:hover {
+            background-color: #f8f9fa;
+        }
+        .modal-xl {
+            max-width: 90%;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .upload-area:hover {
+            border-color: #0d6efd;
+        }
+        .upload-area i {
+            font-size: 48px;
+            color: #6c757d;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Document Processing Service</h4>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i class="bi bi-upload"></i>
+                            Upload Document
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/files" target="_blank">
+                            <i class="bi bi-folder"></i>
+                            Files
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Form -->
+            <div id="uploadSection">
+                <h2 class="mb-4">Document Processing Service</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Process New Document</h5>
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Select Document</label>
+                                <input type="file" class="form-control" id="file" name="file" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="instruction_id" class="form-label">Instruction ID</label>
+                                <input type="text" class="form-control" id="instruction_id" name="instruction_id" value="1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Process Document</button>
+                        </form>
+                        
+                        <div class="loading mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border text-primary me-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span>Processing document...</span>
+                            </div>
+                        </div>
+
+                        <div id="result" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyclical Run</h5>
+                        <form id="cyclicalForm">
+                            <div class="mb-3">
+                                <label for="folder" class="form-label">Select Folder</label>
+                                <select class="form-control" id="folder" name="folder" required>
+                                    <option value="">Select a folder...</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cyclical_instruction_id" class="form-label">Instruction ID</label>
+                                <input type="text" class="form-control" id="cyclical_instruction_id" name="cyclical_instruction_id" value="1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Run Cyclical</button>
+                        </form>
+                        
+                        <div class="loading-cyclical mt-3" style="display: none;">
+                            <div class="d-flex align-items-center">
+                                <div class="spinner-border text-primary me-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span>Processing documents...</span>
+                            </div>
+                        </div>
+
+                        <div id="cyclicalResult" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Files Modal -->
+    <div class="modal fade" id="filesModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Downloaded Files</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <button class="btn btn-secondary" onclick="refreshFileList()">Refresh List</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="fileList" class="file-list list-group">
+                                <!-- Files will be listed here -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="fileViewer" style="display: none;">
+                                <h5>File Content</h5>
+                                <div id="fileContent" class="file-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let filesModal;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            filesModal = new bootstrap.Modal(document.getElementById('filesModal'));
+        });
+
+        function showUploadForm() {
+            document.getElementById('uploadSection').style.display = 'block';
+            document.querySelector('.nav-link.active').classList.remove('active');
+            document.querySelector('.nav-link[onclick="showUploadForm()"]').classList.add('active');
+        }
+
+        function showFiles() {
+            document.getElementById('uploadSection').style.display = 'none';
+            document.querySelector('.nav-link.active').classList.remove('active');
+            document.querySelector('.nav-link[onclick="showFiles()"]').classList.add('active');
+            filesModal.show();
+            refreshFileList();
+        }
+
+        // Load files when page loads
+        document.addEventListener('DOMContentLoaded', refreshFileList);
+
+        // Refresh file list
+        function refreshFileList() {
+            fetch('/files')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const fileList = document.getElementById('fileList');
+                        fileList.innerHTML = '';
+                        
+                        data.files.forEach(file => {
+                            const fileSize = (file.size / 1024).toFixed(2) + ' KB';
+                            const fileItem = document.createElement('a');
+                            fileItem.href = '#';
+                            fileItem.className = 'list-group-item list-group-item-action file-item';
+                            fileItem.innerHTML = `
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>${file.name}</strong>
+                                        <br>
+                                        <small class="text-muted">${file.modified}</small>
+                                    </div>
+                                    <div>
+                                        <span class="badge bg-secondary">${fileSize}</span>
+                                        <button class="btn btn-sm btn-primary ms-2" onclick="downloadFile('${file.name}')">Download</button>
+                                    </div>
+                                </div>
+                            `;
+                            fileItem.onclick = (e) => {
+                                e.preventDefault();
+                                viewFile(file.name);
+                            };
+                            fileList.appendChild(fileItem);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error loading files:', error));
+        }
+
+        // View file content
+        function viewFile(filename) {
+            fetch(`/view/${filename}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const fileViewer = document.getElementById('fileViewer');
+                        const fileContent = document.getElementById('fileContent');
+                        
+                        fileContent.textContent = data.content;
+                        fileViewer.style.display = 'block';
+                    }
+                })
+                .catch(error => console.error('Error viewing file:', error));
+        }
+
+        // Download file
+        function downloadFile(filename) {
+            window.location.href = `/download/${filename}`;
+        }
+
+        // Handle form submission
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const loading = document.querySelector('.loading');
+            const result = document.getElementById('result');
+            
+            loading.style.display = 'block';
+            result.innerHTML = '';
+            
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    result.innerHTML = `
+                        <div class="alert alert-success">
+                            ${data.message}
+                            <br>
+                            <a href="/download/${data.response_file}" class="btn btn-sm btn-success mt-2">
+                                Download Response
+                            </a>
+                        </div>
+                    `;
+                    // Refresh file list after successful upload
+                    refreshFileList();
+                } else {
+                    result.innerHTML = `
+                        <div class="alert alert-danger">
+                            ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="alert alert-danger">
+                        An error occurred while processing the document.
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+
+        // Load folders when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/folders')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const folderSelect = document.getElementById('folder');
+                        data.folders.forEach(folder => {
+                            const option = document.createElement('option');
+                            option.value = folder;
+                            option.textContent = folder;
+                            folderSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error loading folders:', error));
+        });
+
+        // Handle cyclical form submission
+        document.getElementById('cyclicalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const loading = document.querySelector('.loading-cyclical');
+            const result = document.getElementById('cyclicalResult');
+            
+            loading.style.display = 'block';
+            result.innerHTML = '';
+            
+            try {
+                const response = await fetch('/cyclical-run', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    result.innerHTML = `
+                        <div class="alert alert-success">
+                            ${data.message}
+                            <br>
+                            <small>Processed ${data.processed_files} files</small>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="alert alert-danger">
+                            ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="alert alert-danger">
+                        An error occurred while processing the documents.
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

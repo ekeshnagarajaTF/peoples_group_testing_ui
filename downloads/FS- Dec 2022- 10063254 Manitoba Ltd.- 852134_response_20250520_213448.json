@@ -1,0 +1,16 @@
+{
+    "doc-pro-ai-id": "923ae9f2-50cb-43fa-a9d7-eca118f586d6",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1747757081.455841,
+        "end_time": 1747757087.9992945,
+        "total_time_taken": 6.5434534549713135
+    },
+    "results": {
+        "revenue": "672280",
+        "Expenses": "154918",
+        "Net operating income": "517362"
+    }
+}
