@@ -1,0 +1,28 @@
+{
+    "doc-pro-ai-id": "62303c70-e3e4-4186-9dd2-853eef66ff5e",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1747994602.9589307,
+        "end_time": 1747994616.1574993,
+        "total_time_taken": 13.19856858253479
+    },
+    "results": {
+        "totalRevenue": {
+            "value": "298,412",
+            "status": "success",
+            "reason": ""
+        },
+        "totalExpense": {
+            "value": "267,394",
+            "status": "success",
+            "reason": ""
+        },
+        "netOperatingIncome": {
+            "value": "31,018",
+            "status": "success",
+            "reason": ""
+        }
+    }
+}

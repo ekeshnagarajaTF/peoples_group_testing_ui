@@ -1,0 +1,80 @@
+{
+    "doc-pro-ai-id": "c9fbfe5c-8f2d-40b0-b86a-84201ce5e774",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1748262919.0469139,
+        "end_time": 1748262930.5922227,
+        "total_time_taken": 11.545308828353882
+    },
+    "results": {
+        "revenueItems": [
+            {
+                "value": [
+                    {
+                        "Rental Income": "285,412"
+                    },
+                    {
+                        "Investment Revenue": "13,000"
+                    }
+                ],
+                "status": "success",
+                "reason": ""
+            }
+        ],
+        "expenseItems": [
+            {
+                "value": [
+                    {
+                        "Accounting and Legal": "5,329"
+                    },
+                    {
+                        "Amortization": "40,232"
+                    },
+                    {
+                        "Automotive Expenses": "3,497"
+                    },
+                    {
+                        "Bank Charges": "446"
+                    },
+                    {
+                        "BC Hydro": "10,435"
+                    },
+                    {
+                        "Insurance": "12,278"
+                    },
+                    {
+                        "Interest Expenses": "39,833"
+                    },
+                    {
+                        "Licenses, Dues and Subscriptions": "2,033"
+                    },
+                    {
+                        "Office": "1,236"
+                    },
+                    {
+                        "Property Taxes": "19,893"
+                    },
+                    {
+                        "Repairs and Maintenance": "29,546"
+                    },
+                    {
+                        "Wages & Benefits": "76,722"
+                    },
+                    {
+                        "Subcontractor": "9,240"
+                    },
+                    {
+                        "Dumping Charges": "4,210"
+                    },
+                    {
+                        "Utilities": "12,464"
+                    }
+                ],
+                "status": "success",
+                "reason": ""
+            }
+        ]
+    }
+}

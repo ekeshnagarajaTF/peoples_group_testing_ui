@@ -1,0 +1,17 @@
+{
+    "doc-pro-ai-id": "2a702e3f-3935-4dca-bd20-d5113709f8ea",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1747897640.2364118,
+        "end_time": 1747897653.6866517,
+        "total_time_taken": 13.450239896774292
+    },
+    "results": {
+        "total revenue": "681,749",
+        "total expenses": "681,749",
+        "net operating income": "86,979",
+        "reason": "These fields were extracted to provide a summary of the financial performance of Rosewood Crescent Co-operative Housing Incorporated for the year ended September 30, 2023."
+    }
+}

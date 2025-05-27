@@ -1,0 +1,58 @@
+{
+    "doc-pro-ai-id": "a5182163-952d-40ee-af17-0fe2bf0056f9",
+    "status": "failed",
+    "error_code": "NO_KEYS_FOUND",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1747993759.8214822,
+        "end_time": 1747993768.5115497,
+        "total_time_taken": 8.690067529678345
+    },
+    "results": {
+        "extracted_data": [
+            {
+                "totalRevenue": {
+                    "value": "",
+                    "status": "warning",
+                    "reason": "Total revenue or its synonyms not found in the document."
+                },
+                "totalExpense": {
+                    "value": "",
+                    "status": "warning",
+                    "reason": "Total expense or its synonyms not found in the document."
+                },
+                "netOperatingIncome": {
+                    "value": "",
+                    "status": "warning",
+                    "reason": "Net operating income or its synonyms not found in the document."
+                }
+            }
+        ],
+        "financialDocuments": [
+            {
+                "summary": {
+                    "expectedFieldCount": 3,
+                    "extractedFieldCount": 0,
+                    "status": "failed"
+                },
+                "keyValues": {
+                    "totalRevenue": {
+                        "value": "",
+                        "status": "warning",
+                        "reason": "Total revenue or its synonyms not found in the document."
+                    },
+                    "totalExpense": {
+                        "value": "",
+                        "status": "warning",
+                        "reason": "Total expense or its synonyms not found in the document."
+                    },
+                    "netOperatingIncome": {
+                        "value": "",
+                        "status": "warning",
+                        "reason": "Net operating income or its synonyms not found in the document."
+                    }
+                }
+            }
+        ]
+    }
+}

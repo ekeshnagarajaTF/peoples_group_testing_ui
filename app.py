@@ -17,9 +17,8 @@ DOCUMENTS_DIR = r"D:\ThoughtfocusRD\Peoples_group\documents"
 os.makedirs(DOWNLOADS_DIR, exist_ok=True)
 
 # Get API key from environment variable
-API_KEY = os.getenv('API_KEY')
-if not API_KEY:
-    raise ValueError("API_KEY not found in environment variables")
+API_KEY = os.getenv('API_KEY')  # Using default value as fallback
+print(API_KEY)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -101,6 +100,12 @@ def process_document():
     file.save(temp_file_path)
     
     try:
+        # Log file details
+        file_size = os.path.getsize(temp_file_path)
+        print(f"Processing file: {file.filename}")
+        print(f"File size: {file_size} bytes")
+        print(f"File path: {temp_file_path}")
+        
         # Process the document using API_KEY from environment
         result = send_document_to_ai_service(temp_file_path, API_KEY, instruction_id)
         
@@ -122,6 +127,7 @@ def process_document():
                 'response_file': response_filename
             })
         else:
+            print(f"Failed to process file: {file.filename}")
             return jsonify({
                 'status': 'error',
                 'message': 'Failed to process document. Please check the API credentials and try again.'
@@ -130,6 +136,7 @@ def process_document():
     except Exception as e:
         error_message = str(e)
         print(f"Error processing document: {error_message}")
+        print(f"File that caused error: {file.filename}")
         print(traceback.format_exc())
         
         return jsonify({
@@ -191,6 +198,7 @@ def cyclical_run():
         }), 400
     
     processed_files = 0
+    failed_files = []
     
     try:
         # Get all PDF files in the folder
@@ -198,28 +206,43 @@ def cyclical_run():
         
         for filename in pdf_files:
             file_path = os.path.join(folder_path, filename)
-            
-            # Process the document using API_KEY from environment
-            result = send_document_to_ai_service(file_path, API_KEY, instruction_id)
-            
-            if result:
-                # Generate timestamp for the response file
-                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-                # Get original filename without extension
-                original_name = os.path.splitext(filename)[0]
-                response_filename = f'{original_name}_response_{timestamp}.json'
-                response_path = os.path.join(DOWNLOADS_DIR, response_filename)
+            try:
+                # Log file details
+                file_size = os.path.getsize(file_path)
+                print(f"Processing file: {filename}")
+                print(f"File size: {file_size} bytes")
+                print(f"File path: {file_path}")
                 
-                # Save the response to a file
-                with open(response_path, 'w') as f:
-                    json.dump(result, f, indent=4)
+                # Process the document
+                result = send_document_to_ai_service(file_path, API_KEY, instruction_id)
                 
-                processed_files += 1
+                if result:
+                    # Generate timestamp for the response file
+                    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                    # Get original filename without extension
+                    original_name = os.path.splitext(filename)[0]
+                    response_filename = f'{original_name}_response_{timestamp}.json'
+                    response_path = os.path.join(DOWNLOADS_DIR, response_filename)
+                    
+                    # Save the response to a file
+                    with open(response_path, 'w') as f:
+                        json.dump(result, f, indent=4)
+                    
+                    processed_files += 1
+                else:
+                    print(f"Failed to process file: {filename}")
+                    failed_files.append(filename)
+            except Exception as e:
+                error_message = str(e)
+                print(f"Error processing file {filename}: {error_message}")
+                print(traceback.format_exc())
+                failed_files.append(filename)
         
         return jsonify({
             'status': 'success',
             'message': f'Successfully processed {processed_files} files from {folder}',
-            'processed_files': processed_files
+            'processed_files': processed_files,
+            'failed_files': failed_files
         })
             
     except Exception as e:

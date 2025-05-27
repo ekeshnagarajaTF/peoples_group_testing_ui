@@ -1,0 +1,130 @@
+{
+    "doc-pro-ai-id": "623d0705-7773-4b8e-966f-874a1e217e87",
+    "status": "failed",
+    "error_code": "NO_KEYS_FOUND",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1748257608.0700352,
+        "end_time": 1748257629.1909437,
+        "total_time_taken": 21.120908498764038
+    },
+    "results": {
+        "financalDocumentLineItems": [
+            {
+                "summary": {
+                    "expectedFieldCount": 2,
+                    "extractedFieldCount": 0,
+                    "status": "failed"
+                },
+                "keyValues": {
+                    "revenueItems": [
+                        {
+                            "item_name": "Rental income",
+                            "value": "285,412",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Investment revenue",
+                            "value": "13,000",
+                            "status": "success",
+                            "reason": ""
+                        }
+                    ],
+                    "expenseItems": [
+                        {
+                            "item_name": "Accounting and legal",
+                            "value": "5,329",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Amortization",
+                            "value": "40,232",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Automotive expenses",
+                            "value": "3,497",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Bank charges",
+                            "value": "446",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "BC hydro",
+                            "value": "10,435",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Insurance",
+                            "value": "12,278",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Interest expenses",
+                            "value": "39,833",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Licenses, dues and subscriptions",
+                            "value": "2,033",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Office",
+                            "value": "1,236",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Property taxes",
+                            "value": "19,893",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Repairs and maintenance",
+                            "value": "29,546",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Wages & benefits",
+                            "value": "76,722",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Sub contractor",
+                            "value": "9,240",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Dumping charges",
+                            "value": "4,210",
+                            "status": "success",
+                            "reason": ""
+                        },
+                        {
+                            "item_name": "Utilities",
+                            "value": "12,464",
+                            "status": "success",
+                            "reason": ""
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

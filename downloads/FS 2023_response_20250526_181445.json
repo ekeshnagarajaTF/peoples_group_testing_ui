@@ -1,0 +1,106 @@
+{
+    "doc-pro-ai-id": "7fd02ba1-d817-42ef-bc41-34b553c2bea0",
+    "status": "partial",
+    "error_code": "PARTIAL_KEYS_MISSING",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1748263470.1875806,
+        "end_time": 1748263485.2321746,
+        "total_time_taken": 15.044594049453735
+    },
+    "results": {
+        "financalDocumentLineItems": [
+            {
+                "summary": {
+                    "expectedFieldCount": 5,
+                    "extractedFieldCount": 3,
+                    "status": "partial"
+                },
+                "keyValues": {
+                    "totalRevenue": {
+                        "value": "298,412",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "totalExpense": {
+                        "value": "267,394",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "netOperatingIncome": {
+                        "value": "31,018",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "revenueItems": [
+                        {
+                            "value": [
+                                {
+                                    "Rental Income": "285,412"
+                                },
+                                {
+                                    "Investment Revenue": "13,000"
+                                }
+                            ],
+                            "status": "success",
+                            "reason": ""
+                        }
+                    ],
+                    "expenseItems": [
+                        {
+                            "value": [
+                                {
+                                    "Accounting and legal": "5,329"
+                                },
+                                {
+                                    "Amortization": "40,232"
+                                },
+                                {
+                                    "Automotive expenses": "3,497"
+                                },
+                                {
+                                    "Bank charges": "446"
+                                },
+                                {
+                                    "BC hydro": "10,435"
+                                },
+                                {
+                                    "Insurance": "12,278"
+                                },
+                                {
+                                    "Interest expenses": "39,833"
+                                },
+                                {
+                                    "Licenses, dues and subscriptions": "2,033"
+                                },
+                                {
+                                    "Office": "1,236"
+                                },
+                                {
+                                    "Property taxes": "19,893"
+                                },
+                                {
+                                    "Repairs and maintenance": "29,546"
+                                },
+                                {
+                                    "Wages & benefits": "76,722"
+                                },
+                                {
+                                    "Sub contractor": "9,240"
+                                },
+                                {
+                                    "Dumping charges": "4,210"
+                                },
+                                {
+                                    "Utilities": "12,464"
+                                }
+                            ],
+                            "status": "success",
+                            "reason": ""
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

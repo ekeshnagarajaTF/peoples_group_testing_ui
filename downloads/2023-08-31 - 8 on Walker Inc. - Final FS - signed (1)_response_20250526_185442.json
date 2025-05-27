@@ -1,0 +1,87 @@
+{
+    "doc-pro-ai-id": "af382707-3c8d-48f8-893e-9331f17e7eda",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1748265871.0100837,
+        "end_time": 1748265882.874411,
+        "total_time_taken": 11.864327430725098
+    },
+    "results": {
+        "financalDocumentLineItems": [
+            {
+                "summary": {
+                    "expectedFieldCount": 5,
+                    "extractedFieldCount": 5,
+                    "status": "success"
+                },
+                "keyValues": {
+                    "totalRevenue": {
+                        "value": "92,263",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "totalExpense": {
+                        "value": "97,928",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "netOperatingIncome": {
+                        "value": "(5,665)",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "revenueItems": {
+                        "value": [
+                            {
+                                "rental_revenue": "92,263"
+                            }
+                        ],
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "expenseItems": {
+                        "value": [
+                            {
+                                "interest_on_long_term_debt": "42,889"
+                            },
+                            {
+                                "professional_fees": "11,393"
+                            },
+                            {
+                                "utilities": "12,372"
+                            },
+                            {
+                                "property_management_fees": "11,689"
+                            },
+                            {
+                                "property_taxes": "9,659"
+                            },
+                            {
+                                "insurance": "4,955"
+                            },
+                            {
+                                "amortization_of_deferred_financing_fees": "2,411"
+                            },
+                            {
+                                "advertising_and_promotion": "1,444"
+                            },
+                            {
+                                "repairs_and_maintenance": "971"
+                            },
+                            {
+                                "interest_and_bank_charges": "107"
+                            },
+                            {
+                                "office_and_miscellaneous": "38"
+                            }
+                        ],
+                        "status": "success",
+                        "reason": ""
+                    }
+                }
+            }
+        ]
+    }
+}

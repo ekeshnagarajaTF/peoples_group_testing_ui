@@ -2,11 +2,12 @@ import requests
 import time
 import hashlib
 import hmac
+from siggen import generate_signature
 
-def generate_signature(api_key: str, timestamp: str) -> str:
+def get_signature() -> str:
     """Generate signature using HMAC SHA-256."""
-    # For testing, return the exact signature from the curl command
-    return "8b07e961af3c350e568ffbce7f34bd18bc1750d66fe4f3859b47e34dd027408f"
+   
+    return generate_signature();
 
 def send_document_to_ai_service(file_path: str, api_key: str, instruction_id: str = '1') -> dict:
     """
@@ -23,11 +24,9 @@ def send_document_to_ai_service(file_path: str, api_key: str, instruction_id: st
     # API endpoint
     url = "https://peoplesgroup-client-api.vector.yanaimpl.com/api/v1/doc-pro-ai-service-synchronous"
     
-    # Use the exact timestamp from the curl command for testing
-    timestamp = "1747741096"
     
     # Generate signature
-    signature = generate_signature(api_key, timestamp)
+    signature , timestamp = get_signature()
     
     # For debugging
     print(f"Using signature: {signature}")
@@ -86,19 +85,3 @@ def send_document_to_ai_service(file_path: str, api_key: str, instruction_id: st
     finally:
         # Close the file
         files['file'][1].close()
-
-def main():
-    # Configuration
-    API_KEY = "7a055afd4e7a130133dd9a6ef2366c83"
-    FILE_PATH = r"D:\ThoughtfocusRD\Peoples_group\documents\operational\1558161 Alberta Ltd. Financial Statements 2023.pdf"
-    
-    # Send request
-    result = send_document_to_ai_service(FILE_PATH, API_KEY)
-    
-    if result:
-        print("Response:", result)
-    else:
-        print("Failed to get response from the API")
-
-if __name__ == "__main__":
-    main() 

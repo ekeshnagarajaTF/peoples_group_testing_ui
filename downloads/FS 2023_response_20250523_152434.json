@@ -1,0 +1,58 @@
+{
+    "doc-pro-ai-id": "8c87365f-9281-4155-b3d0-25c5efd5f6b8",
+    "status": "success",
+    "error_code": "",
+    "details": "Request processed successfully.",
+    "processing_time": {
+        "start_time": 1747994061.28094,
+        "end_time": 1747994074.7006717,
+        "total_time_taken": 13.419731616973877
+    },
+    "results": {
+        "extracted_data": [
+            {
+                "totalRevenue": {
+                    "value": "298,412",
+                    "status": "success",
+                    "reason": ""
+                },
+                "totalExpense": {
+                    "value": "267,394",
+                    "status": "success",
+                    "reason": ""
+                },
+                "netOperatingIncome": {
+                    "value": "31,018",
+                    "status": "success",
+                    "reason": ""
+                }
+            }
+        ],
+        "financialDocuments": [
+            {
+                "summary": {
+                    "expectedFieldCount": 3,
+                    "extractedFieldCount": 3,
+                    "status": "success"
+                },
+                "keyValues": {
+                    "totalRevenue": {
+                        "value": "298,412",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "totalExpense": {
+                        "value": "267,394",
+                        "status": "success",
+                        "reason": ""
+                    },
+                    "netOperatingIncome": {
+                        "value": "31,018",
+                        "status": "success",
+                        "reason": ""
+                    }
+                }
+            }
+        ]
+    }
+}
